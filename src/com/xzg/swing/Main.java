@@ -23,6 +23,7 @@ import net.sf.json.JSONObject;
 import com.xzg.config.Config;
 import com.xzg.entity.Message;
 import com.xzg.http.HttpClientUtil;
+import com.xzg.http.OperationFlow;
 import com.xzg.util.HttpUtil;
 import com.xzg.util.JsonUtil;
 import com.xzg.util.TT;
@@ -35,11 +36,11 @@ public class Main {
 	public static long sleep = 900L;
 	public static Map<String, String> confMap = new HashMap();
 	public static int jinE;
-	static String userId = "";
-	static String token = "";
-	static String hshow = "";
-	static String param = "";
-	static String result = null;
+	public static String userId = "";
+	public static String token = "";
+	public static String hshow = "";
+	public static String param = "";
+	public static String result = null;
 	public static JTextArea area;
 
 	public static void main(String[] args) {
@@ -164,7 +165,7 @@ public class Main {
 		});
 		button4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.area.setText("");
+				Main.area.setText("正在抢单中，请耐心等候.................");
 				Main.flag = true;
 				Main.Qiangdan qd = new Main.Qiangdan();
 				qd.start();
@@ -195,7 +196,7 @@ public class Main {
 					Main.area.requestFocus();
 				}
 				this.index += 1;
-				try {
+				/*try {
 					this.result = HttpClientUtil.post(
 							Config.getMcpeanutListhehe, Main.confMap);
 				} catch (Exception e1) {
@@ -207,8 +208,9 @@ public class Main {
 				
 				System.out.println(result);
 				
-				/*Main.area.append("线程执行计数：" + this.index + "��" + this.result
-						+ "\n");*/
+				Main.area.append("线程执行计数：" + this.index + "��" + this.result
+						+ "\
+						n");
 				
 				
 				
@@ -231,7 +233,10 @@ public class Main {
 							break;
 						}
 					}
-				}
+				}*/
+				
+				OperationFlow.Handler(20);
+				
 				if (!Main.flag) {
 					break;
 				}

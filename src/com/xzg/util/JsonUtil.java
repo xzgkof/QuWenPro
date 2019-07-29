@@ -39,7 +39,7 @@ public class JsonUtil {
 		String message = "{\"success\":false,\"message\":\"抱歉，该订单已被抢\"}";
 		for (Iterator<Order> it = list.iterator(); it.hasNext();) {
 			Order order = (Order) it.next();
-			if (Double.valueOf(order.getNumber()).doubleValue() <= Main.jinE) {
+			if (Double.valueOf(order.getNumber()).doubleValue() >= Main.jinE) {
 				String param2 = Config.AddmcpeanutheheForm
 						.replace("codeTem", "1234")
 						.replace("mkid", order.getId())

@@ -67,7 +67,7 @@ public class Main {
 		jpanel.add(field2);
 		jpanel.add(spbtn);
 
-		JLabel jeLabel = new JLabel("金额小于等于：");
+		JLabel jeLabel = new JLabel("金额大于等于：");
 		JTextField field3 = new JTextField();
 		JButton jebtn = new JButton("确定");
 		jpanel.add(jeLabel);
@@ -189,14 +189,14 @@ public class Main {
 
 		public void run() {
 			for (;;) {
-				Main.area.selectAll();
+				/*Main.area.selectAll();
 				if (Main.area.getSelectedText() != null) {
 					Main.area.setCaretPosition(Main.area.getSelectedText()
 							.length());
 					Main.area.requestFocus();
 				}
 				this.index += 1;
-				/*try {
+				try {
 					this.result = HttpClientUtil.post(
 							Config.getMcpeanutListhehe, Main.confMap);
 				} catch (Exception e1) {
@@ -240,11 +240,11 @@ public class Main {
 				if (!Main.flag) {
 					break;
 				}
-				try {
+				/*try {
 					Thread.sleep(Main.sleep);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
-				}
+				}*/
 			}
 		}
 	}

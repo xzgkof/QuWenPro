@@ -62,7 +62,7 @@ public class OperationFlow {
 	            	  //原生方式
 	            	   String result = HttpUtil.doPost(url, Main.param, Main.bool, Main.addr, Main.prot);
 	            	  
-	            	   System.out.println("result="+result);
+	            	   //System.out.println("result="+result);
 	            	   
 	                  if(result != null && result.indexOf("[]") == -1 && TT.isjson(result)){
 	                	   String msg = JsonUtil.handler(

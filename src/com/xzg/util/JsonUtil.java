@@ -15,9 +15,7 @@ import com.xzg.swing.Main;
 
 public class JsonUtil {
 
-	
-	
-	
+		
 	public static List<Order> getOrderList(String jsonStr) {
 		JSONObject jsonObject = JSONObject.fromObject(jsonStr);
 
@@ -46,8 +44,11 @@ public class JsonUtil {
 						.replace("uidTem", userId).replace("tokenTem", token)
 						.replace("hshow", hshow);
 				try {
-					message = HttpClientUtil.post(
-							Config.Addmcpeanuthehe, TT.setConfig(param2));
+					 //httpclient线程池方式
+					//message = HttpClientUtil.post(Config.Addmcpeanuthehe, TT.setConfig(param2));
+					//原生方式
+					message = HttpUtil.doPost(Config.Addmcpeanuthehe, param2, Main.bool, Main.addr, Main.prot);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

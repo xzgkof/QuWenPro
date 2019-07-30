@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpGet;
 import com.xzg.config.Config;
 import com.xzg.http.HttpClientUtil.GetRunnable;
 import com.xzg.swing.Main;
+import com.xzg.util.HttpUtil;
 import com.xzg.util.JsonUtil;
 import com.xzg.util.StringUnicodeTest;
 import com.xzg.util.TT;
@@ -56,7 +57,13 @@ public class OperationFlow {
 	          @Override
 	          public void run() {
 	              try {
-	                  String result = HttpClientUtil.post(url,param);   	                  
+	            	  //httpclient线程池方式
+	                  //String result = HttpClientUtil.post(url,param);   
+	            	  //原生方式
+	            	   String result = HttpUtil.doPost(url, Main.param, Main.bool, Main.addr, Main.prot);
+	            	  
+	            	   System.out.println("result="+result);
+	            	   
 	                  if(result != null && result.indexOf("[]") == -1 && TT.isjson(result)){
 	                	   String msg = JsonUtil.handler(
 	   							JsonUtil.getOrderList(result), Main.token,

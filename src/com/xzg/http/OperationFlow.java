@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpGet;
 import com.xzg.config.Config;
 import com.xzg.http.HttpClientUtil.GetRunnable;
 import com.xzg.swing.Main;
+import com.xzg.util.ClientProxyHttpClientHttp;
 import com.xzg.util.HttpUtil;
 import com.xzg.util.JsonUtil;
 import com.xzg.util.StringUnicodeTest;
@@ -56,13 +57,21 @@ public class OperationFlow {
 	   
 	          @Override
 	          public void run() {
+	        	  String result = null;
 	              try {
+	            	  
 	            	  //httpclient线程池方式
 	                  //String result = HttpClientUtil.post(url,param);   
-	            	  //原生方式
-	            	   String result = HttpUtil.doPost(url, Main.param, Main.bool, Main.addr, Main.prot);
+	            	  //httpclient代理方式
+	            	   if(Main.bool){
+	            		    result = ClientProxyHttpClientHttp.doPostRequest(url, TT.setConfig(Main.param));
+	            	   }else{
+	            		   //原生方式 no proxy
+	            		    result = HttpUtil.doPost(url, Main.param, Main.bool, Main.addr, Main.prot);
+	            	   }
+	            	   
 	            	  
-	            	   //System.out.println("result="+result);
+	            	   System.out.println("result="+result);
 	            	   
 	                  if(result != null && result.indexOf("[]") == -1 && TT.isjson(result)){
 	                	   String msg = JsonUtil.handler(
@@ -80,7 +89,7 @@ public class OperationFlow {
 	             					Main.area.requestFocus();
 	             				}
 	             				
-	                	    	 Main.area.append(Main.area.getText() + "\n" + msg);
+	                	    	 Main.area.append(Main.area.getText() + "\n" + "=====抢单成功 ====="+"\n"+msg);
 	                	    	 Main.flag = false;
 	                	     } 	    
 	                  }

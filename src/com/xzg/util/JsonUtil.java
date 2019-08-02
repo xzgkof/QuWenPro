@@ -46,8 +46,18 @@ public class JsonUtil {
 				try {
 					 //httpclient线程池方式
 					//message = HttpClientUtil.post(Config.Addmcpeanuthehe, TT.setConfig(param2));
-					//原生方式
-					message = HttpUtil.doPost(Config.Addmcpeanuthehe, param2, Main.bool, Main.addr, Main.prot);
+					
+					if(Main.bool){
+						//message = ClientProxyHttpClientHttp.doPostRequest(Config.Addmcpeanuthehe, TT.setConfig(param2));
+						
+					}else{
+						//原生方式
+						//message = HttpUtil.doPost(Config.Addmcpeanuthehe, param2, Main.bool, Main.addr, Main.prot);
+					}
+					
+					if(message.indexOf("true") != -1){
+						message = "{\"状态\":true,\"message\":\"成功\",\"数量\":"+order.getNumber()+"}";
+					 }
 					
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -327,6 +327,8 @@ public class HttpUtil
       } else {
         errMsg = e.getMessage();
       }
+      
+      result = null;
       e.printStackTrace();
     }
     return result;
